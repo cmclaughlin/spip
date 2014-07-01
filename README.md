@@ -1,6 +1,6 @@
 ## spip
 
-This is a script/wrapper for populating ~/.pip/pip.conf with passwords from
+This is a script/wrapper for populating `~/.pip/pip.conf` with passwords from
 the system keychain, running pip with the credentials, and deleting the
 passwords from disk when done.  It's intended for Python shops running their
 own PyPi proxy with password authentication, but you don't want to leave plain
@@ -18,7 +18,7 @@ unlock the keychain and type in your password a few times.  Double-click the
 select 'New Password Item'.  Use these settings:
 
     Keychain Item Name: pip
-    Account Name: your pypi proxy username (this is actually unused by this script, but set it to your user name to be consistant)
+    Account Name: your pypi proxy username
     Password: your pypi proxy password
 
 Click `Add`.  Next find the newly created Keychain entry and double click on
@@ -34,7 +34,7 @@ You'll also need to create a `~/.pip/pip.conf.tmpl`.  If you have an existing
 `pip.conf` file, just rename it to `~/.pip/pip.conf.tmpl`.  Here's an example:
 
     [global]
-    index-url = https://username:{{ get_password('pip', 'charles') }}@pypi.example.com/simple/
+    index-url = https://username:{{ get_password('pip', 'username') }}@pypi.example.com/simple/
 
 If need multiple passwords in your `pip.conf`, such as a password protected
 index-url and a password protected extra-index-url, you can repeat these steps
