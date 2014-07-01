@@ -12,10 +12,10 @@ First install a few depenencies.
 
     pip install requirements.txt
 
-On OSX, open the 'Keychain Access' application.  You'll probably need to
+On OSX, open the `Keychain Access` application.  You'll probably need to
 unlock the keychain and type in your password a few times.  Double-click the
-'System' icon in the 'Keychains' menu on the left.  Next, under the File menu,
-select 'New Password Item'.  Use these settings:
+`System` icon in the `Keychains` menu on the left.  Next, under the File menu,
+select `New Password Item`.  Use these settings:
 
     Keychain Item Name: pip
     Account Name: your pypi proxy username
@@ -24,7 +24,7 @@ select 'New Password Item'.  Use these settings:
 Click `Add`.  Next find the newly created Keychain entry and double click on
 it.  Click the `Access Control` tab.  Under
 `Always allow access by these applications`, click the `+` sign and add
-'/usr/bin/security'.  This step is optional and you could also provide the path
+`/usr/bin/security`.  This step is optional and you could also provide the path
 to your Python interpreter. This provides sudo-like functionality.  When
 running `spip`, you'll need to unlock your Keychain at least once during your
 session and you'll have the option to keep it unlocked or not.  If you choose
@@ -38,7 +38,7 @@ You'll also need to create a `~/.pip/pip.conf.tmpl`.  If you have an existing
 
 If need multiple passwords in your `pip.conf`, such as a password protected
 index-url and a password protected extra-index-url, you can repeat these steps
-and make multiple 'get_password' calls in your 'pip.conf.tmpl'.  Just make sure
+and make multiple `get_password` calls in your `pip.conf.tmpl`.  Just make sure
 name of your Keychain items are unique and referenced properly in your
 `pip.conf.tmpl`.
 
