@@ -3,7 +3,6 @@
 # A script for populating ~/.pip/pip.conf with passwords from the system
 # keychain and deleting the passwords from disk when done.
 
-from ConfigParser import ConfigParser
 from os import path, remove
 import subprocess
 import sys
