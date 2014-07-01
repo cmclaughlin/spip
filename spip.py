@@ -1,0 +1,37 @@
+#! /usr/bin/env python
+
+# A script for populating ~/.pip/pip.conf with passwords from the system
+# keychain and deleting the passwords from disk when done.
+
+from ConfigParser import ConfigParser
+from os import path, remove
+import subprocess
+import sys
+
+import keyring
+import jinja2
+
+pip_dir = path.join(path.expanduser('~'), '.pip')
+
+# Build a new pip.conf in memory from a template
+env = jinja2.Environment(loader=jinja2.FileSystemLoader(pip_dir))
+env.globals['get_password'] = keyring.get_password
+template = env.get_template('pip.conf.tmpl')
+output = template.render()
+
+# Write pip.conf with password(s)
+with open(path.join(pip_dir, 'pip.conf'), 'wb') as fh:
+    fh.write(output)
+
+# Run pip with the provided args, then delete pip.conf
+subprocess.call(['pip'] + sys.argv[1:])
+remove(path.join(pip_dir, 'pip.conf'))
+
+# Optionally delete the pip log file
+config = ConfigParser()
+config.read(path.join(pip_dir, 'spip.conf'))
+if 'spip' in config.sections():
+    if config.getboolean('spip', 'delete_log'):
+        log = path.join(pip_dir, 'pip.log')
+        if path.isfile(log):
+            remove(log)
