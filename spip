@@ -26,12 +26,3 @@ with open(path.join(pip_dir, 'pip.conf'), 'wb') as fh:
 # Run pip with the provided args, then delete pip.conf
 subprocess.call(['pip'] + sys.argv[1:])
 remove(path.join(pip_dir, 'pip.conf'))
-
-# Optionally delete the pip log file
-config = ConfigParser()
-config.read(path.join(pip_dir, 'spip.conf'))
-if 'spip' in config.sections():
-    if config.getboolean('spip', 'delete_log'):
-        log = path.join(pip_dir, 'pip.log')
-        if path.isfile(log):
-            remove(log)

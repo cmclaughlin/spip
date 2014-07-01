@@ -42,14 +42,6 @@ and make multiple `get_password` calls in your `pip.conf.tmpl`.  Just make sure
 name of your Keychain items are unique and referenced properly in your
 `pip.conf.tmpl`.
 
-Optionally, you can also choose to have spip delete any `pip.log` files left on
-disk.  You may want to do this since pip logs URLs, which may have passwords
-embedded for basic HTTP authentication.  To enable this, create a
-`~/.pip/spip.conf` file with the following:
-
-    [spip]
-    delete_log = True
-
 ## Usage
 
 Simply call spip as you would with pip.  For instance:
